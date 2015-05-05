@@ -7,8 +7,10 @@ Write a function to reverse a string
 
 ```ruby
 def reverse(string)
-  # your magic
+  string.reverse
 end
+
+puts reverse("HELLO")
 ```
 
 #### Palindrome
@@ -17,8 +19,10 @@ Write a function to check if a given string is a palindrome
 
 ```ruby
 def isPalindrome(string)
-  # your magic
+  string == string.reverse
 end
+
+puts "is harry palindrome? #{isPalindrome('harryrrah')}"
 ```
 
 #### Prime Number
@@ -27,8 +31,14 @@ Write a function to check if a number is a prime number
 
 ```ruby
 def PrimeNumber?(number)
-  # your magic
+  return false if number < 2 || number % 2 == 0
+  (2.. number-1).select(&:odd?).each do |i|
+    return false if number%i == 0
+  end
+  return true
 end
+
+puts("is a prime number? #{PrimeNumber?(7)}")
 ```
 
 
@@ -38,8 +48,19 @@ Write a function to find all prime factors of a number
 
 ```ruby
 def primeFactors(number)
-  # your magic
+  factors = []
+  while (number > 1) do
+  i = 2
+    while i<=number && number%i != 0 do
+    i += 1
+    end
+    factors << i 
+    number /= i
+  end
+  factors.sort
 end
+
+
 ```
 
 #### Missing Number
@@ -48,8 +69,18 @@ You have an array of numbers 1 to 100 in an array. Only one number is missing in
 
 ```ruby
 def missingNumber(array)
-  # your magic
+  (1..100).each do |i|
+    return i if !array.index(i)
+  end
 end
+
+def initializeArray(num)
+  array = []
+  (1..100).each {|i| array << i}
+  array.delete(num) #This deletes w/e number position we write 
+  return array
+end
+puts "The missing element is #{missingNumber(initializeArray(35))}"
 ```
 
 #### Caesar Cipher
@@ -61,13 +92,27 @@ Useful methods:
 - [String::chr](http://ruby-doc.org/core-2.0.0/String.html#method-i-chr)
 
 ```ruby
+OFFSET = 1
+
 def encrypt(message)
-  # your magic
+  encrypted = ""
+  message.each_char { |c| encrypted << (c.ord+OFFSET).chr }
+  encryped
 end
 
 def decrypt(message)
-  # your magic
+  decrypted = ""
+  message.each_char { |c| decrypted << (c.ord-OFFSET).chr }
 end
+
+message = "Matz is Nice So We Are Nice"
+puts "Original Msg: #{message)}"
+
+messageEn = encrypt(message)
+puts "Encrypted Msg: #{messageEn}"
+
+messageDe = decrypt(message)
+puts "Decrypted Msg: #{messageDe}"
 ```
 
 #### Number Persistence
