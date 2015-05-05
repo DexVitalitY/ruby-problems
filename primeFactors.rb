@@ -15,14 +15,22 @@ end
 
 def primeFactors(number)
   factors = []
-  i = 0
+  i = 2
+  primeFactors = []
+
   while i <= number do
   	if primeNumber(i)
   		factors.push(i)
   	end
   i += 1
 	end
-	return factors
+	
+	for value in factors do 
+		if (number % value === 0)
+			primeFactors.push(value)
+		end
+	end
+	return primeFactors
 end
 
 puts primeFactors(11)
