@@ -7,7 +7,6 @@
 # - [String::chr](http://ruby-doc.org/core-2.0.0/String.html#method-i-chr)
 #  -->
 
-
 def encrypt(message)
 	key = 2
 	encrypted = []
@@ -15,11 +14,16 @@ def encrypt(message)
 	return encrypted
 end
 
+
+
 def decrypt(message)
-  puts message
+
+  for value in encrypted
+  	decrypted += value.chr
+  end 
 end
 
-# secret = "AAAAAAAAAAHello World"
+secret = "AAAAAAAAAAHello World"
 
-puts encrypt("AAAAAAAAAAHello World")
-puts decrypt("AAAAAAAAAAHello World")
+puts encrypt(secret)
+puts decrypt(encrypt(secret))
